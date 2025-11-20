@@ -1,0 +1,107 @@
+﻿@model IEnumerable<RHManagement.Models.Post>
+
+@{
+    ViewData["Title"] = "Liste des Postes";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - RH Management</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+
+    <!-- NAVBAR FIXÉE EN HAUT -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top shadow-sm" style="font-size: 1.2rem;">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" asp-controller="Home" asp-action="Index">
+                <img src="~/images/RH.png" alt="RH Management" height="50" class="me-3" />
+                <strong>RH Management</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto gap-3">
+                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">🏠 Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Employees" asp-action="Index">👔 Employés</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Users" asp-action="Index">👤 Utilisateurs</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Departments" asp-action="Index">🏢 Départements</a></li>
+                    <li class="nav-item"><a class="nav-link active" asp-controller="Posts" asp-action="Index">📝 Postes</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Candidates" asp-action="Index">🧑‍💼 Candidats</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- LAYOUT GLOBAL -->
+    <div class="d-flex" style="margin-top:56px; min-height: calc(100vh - 56px);">
+
+        <!-- SIDEBAR FIXÉE À GAUCHE -->
+        <div class="bg-primary text-white p-4" style="width: 300px; height: 100vh; position: fixed; top: 56px; left: 0; font-size: 1.5rem; font-weight: bold;">
+            <ul class="nav flex-column gap-4">
+                <li><a class="nav-link text-white" asp-controller="Employees" asp-action="Index">👔 Employés</a></li>
+                <li><a class="nav-link text-white" asp-controller="Users" asp-action="Index">👤 Utilisateurs</a></li>
+                <li><a class="nav-link text-white" asp-controller="Departments" asp-action="Index">🏢 Départements</a></li>
+                <li><a class="nav-link text-white active" asp-controller="Posts" asp-action="Index">📝 Postes</a></li>
+                <li><a class="nav-link text-white" asp-controller="Candidates" asp-action="Index">🧑‍💼 Candidats</a></li>
+            </ul>
+        </div>
+
+        <!-- CONTENU CENTRAL -->
+        <div class="flex-grow-1 p-5" style="margin-left: 300px;">
+            <div class="text-center mb-4">
+                <h1 class="display-5">📝 Liste des Postes</h1>
+                <a asp-action="Create" class="btn btn-primary btn-lg mt-3">+ Ajouter un Poste</a>
+            </div>
+
+            <!-- TABLEAU CENTRÉ -->
+            <div class="d-flex justify-content-center">
+                <div class="card shadow-sm w-100" style="max-width: 1000px;">
+                    <div class="card-body">
+                        <table class="table table-bordered table-hover align-middle">
+                            <thead class="table-primary text-center">
+                                <tr>
+                                    <th>Titre</th>
+                                    <th>Description</th>
+                                    <th>Département</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Title</td>
+                                        <td>@item.Description</td>
+                                        <td>@item.Department?.Name</td>
+                                        <td class="text-center">
+                                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm me-1">Détails</a>
+                                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm me-1">Modifier</a>
+                                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Supprimer</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer text-center py-3" style="background-color:#f8f9fa; margin-left:300px;">
+        <div class="container">
+            <small class="text-muted">© 2025 – RH Management | Tous droits réservés</small>
+        </div>
+    </footer>
+
+    <!-- JS Bootstrap -->
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

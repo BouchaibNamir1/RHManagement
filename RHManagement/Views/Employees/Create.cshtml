@@ -1,0 +1,107 @@
+﻿@model RHManagement.Models.Employee
+
+@{
+    ViewData["Title"] = "Créer un employé";
+    Layout = "_Layout";
+}
+
+<!-- NAVBAR FIXÉE -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top shadow-sm" style="font-size: 1.2rem;">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" asp-controller="Home" asp-action="Index">
+            <img src="~/images/RH.png" alt="RH Management" height="50" class="me-3" />
+            <strong>RH Management</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto gap-3">
+                <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">🏠 Accueil</a></li>
+                <li class="nav-item"><a class="nav-link active" asp-controller="Employees" asp-action="Index">👔 Employés</a></li>
+                <li class="nav-item"><a class="nav-link" asp-controller="Users" asp-action="Index">👤 Utilisateurs</a></li>
+                <li class="nav-item"><a class="nav-link" asp-controller="Departments" asp-action="Index">🏢 Départements</a></li>
+                <li class="nav-item"><a class="nav-link" asp-controller="Posts" asp-action="Index">📝 Postes</a></li>
+                <li class="nav-item"><a class="nav-link" asp-controller="Candidates" asp-action="Index">🧑‍💼 Candidats</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- LAYOUT -->
+<div class="d-flex" style="margin-top:56px;">
+    <!-- SIDEBAR -->
+    <div class="bg-primary text-white p-4" style="width: 300px; height: 100vh; position: fixed; top: 56px; left: 0; font-size: 1.5rem; font-weight: bold;">
+        <ul class="nav flex-column gap-4">
+            <li><a class="nav-link text-white fw-bold" asp-controller="Employees" asp-action="Index">👔 Employés</a></li>
+            <li><a class="nav-link text-white" asp-controller="Users" asp-action="Index">👤 Utilisateurs</a></li>
+            <li><a class="nav-link text-white" asp-controller="Departments" asp-action="Index">🏢 Départements</a></li>
+            <li><a class="nav-link text-white" asp-controller="Posts" asp-action="Index">📝 Postes</a></li>
+            <li><a class="nav-link text-white" asp-controller="Candidates" asp-action="Index">🧑‍💼 Candidats</a></li>
+        </ul>
+    </div>
+
+    <!-- CONTENU PRINCIPAL -->
+    <div class="flex-grow-1 p-5" style="margin-left: 300px;">
+        <div class="card shadow-lg mx-auto" style="max-width: 900px;">
+            <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center">
+                <h3 class="mb-0">Créer un employé</h3>
+                <a asp-action="Index" class="btn btn-sm" style="background-color: #17c1e8; color: white;">← Retour</a>
+            </div>
+
+            <div class="card-body p-4">
+                <form asp-action="Create">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="FullName" class="form-label fw-bold"></label>
+                            <input asp-for="FullName" class="form-control" />
+                            <span asp-validation-for="FullName" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Email" class="form-label fw-bold"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="PhoneNumber" class="form-label fw-bold"></label>
+                            <input asp-for="PhoneNumber" class="form-control" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="HireDate" class="form-label fw-bold"></label>
+                            <input asp-for="HireDate" class="form-control" type="date" />
+                            <span asp-validation-for="HireDate" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="DepartmentName" class="form-label fw-bold"></label>
+                        <input asp-for="DepartmentName" class="form-control" />
+                        <span asp-validation-for="DepartmentName" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-success">Créer</button>
+                        <a asp-action="Index" class="btn" style="background-color: #17c1e8; color: white;">Retour</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer text-center py-3" style="background-color:#f8f9fa; margin-left:300px;">
+    <div class="container">
+        <small class="text-muted">© 2025 – RH Management | Tous droits réservés</small>
+    </div>
+</footer>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,88 @@
+﻿@model RHManagement.Models.Candidate
+
+@{
+    ViewData["Title"] = "Détails du Candidat";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - RH Management</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" asp-controller="Home" asp-action="Index">
+                <img src="~/images/RH.png" alt="RH Management" height="40" class="me-2" />
+                <strong>RH Management</strong>
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto gap-3">
+                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">🏠 Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Employees" asp-action="Index">👔 Employés</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Users" asp-action="Index">👤 Utilisateurs</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Departments" asp-action="Index">🏢 Départements</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Posts" asp-action="Index">📝 Postes</a></li>
+                    <li class="nav-item"><a class="nav-link active" asp-controller="Candidates" asp-action="Index">🧑‍💼 Candidats</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- LAYOUT -->
+    <div class="d-flex" style="margin-top:56px; min-height: calc(100vh - 56px);">
+        <!-- SIDEBAR -->
+        <div class="bg-primary text-white p-4" style="width: 300px; height: 100vh; position: fixed; top: 56px; left: 0; font-size: 1.5rem; font-weight: bold;">
+            <ul class="nav flex-column gap-4">
+                <li><a class="nav-link text-white" asp-controller="Employees" asp-action="Index">👔 Employés</a></li>
+                <li><a class="nav-link text-white" asp-controller="Users" asp-action="Index">👤 Utilisateurs</a></li>
+                <li><a class="nav-link text-white" asp-controller="Departments" asp-action="Index">🏢 Départements</a></li>
+                <li><a class="nav-link text-white" asp-controller="Posts" asp-action="Index">📝 Postes</a></li>
+                <li><a class="nav-link text-white active" asp-controller="Candidates" asp-action="Index">🧑‍💼 Candidats</a></li>
+            </ul>
+        </div>
+
+        <!-- CONTENU -->
+        <div class="flex-grow-1 p-5" style="margin-left: 300px;">
+            <div class="card shadow mx-auto" style="max-width: 700px;">
+                <div class="card-header d-flex justify-content-between align-items-center bg-info text-white">
+                    <h4 class="mb-0">📄 Détails du Candidat</h4>
+                    <a asp-action="Index" class="btn btn-light btn-sm">← Retour</a>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-4">Nom complet</dt>
+                        <dd class="col-sm-8">@Model.FullName</dd>
+
+                        <dt class="col-sm-4">Email</dt>
+                        <dd class="col-sm-8">@Model.Email</dd>
+
+                        <dt class="col-sm-4">Téléphone</dt>
+                        <dd class="col-sm-8">@Model.PhoneNumber</dd>
+                    </dl>
+                    <div class="mt-4">
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Modifier</a>
+                        <a asp-action="Index" class="btn btn-secondary">Retour</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer text-center py-3" style="background-color:#f8f9fa; margin-left:300px;">
+        <div class="container">
+            <small class="text-muted">© 2025 – RH Management | Tous droits réservés</small>
+        </div>
+    </footer>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+﻿@model RHManagement.Models.ApplicationUser
+
+@{
+    ViewData["Title"] = "Créer un Utilisateur";
+    Layout = "_Layout";
+}
+
+<!-- NAVBAR + SIDEBAR identiques à celles des autres pages -->
+<!-- CONTENU -->
+<div class="d-flex" style="margin-top: 56px;">
+    <div class="bg-primary text-white p-4" style="width: 300px; height: 100vh; position: fixed; top:56px; left: 0; font-size: 1.5rem;">
+        <ul class="nav flex-column gap-4">
+            <li><a class="nav-link text-white fw-bold" asp-controller="Users" asp-action="Index">👤 Utilisateurs</a></li>
+            <li><a class="nav-link text-white" asp-controller="Employees" asp-action="Index">👔 Employés</a></li>
+            <li><a class="nav-link text-white" asp-controller="Departments" asp-action="Index">🏢 Départements</a></li>
+            <li><a class="nav-link text-white" asp-controller="Posts" asp-action="Index">📝 Postes</a></li>
+            <li><a class="nav-link text-white" asp-controller="Candidates" asp-action="Index">🧑‍💼 Candidats</a></li>
+        </ul>
+    </div>
+
+    <div class="flex-grow-1 p-5" style="margin-left:300px;">
+        <div class="card shadow mx-auto" style="max-width: 700px;">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4>Créer un Utilisateur</h4>
+                <a asp-action="Index" class="btn btn-sm" style="background-color:#17c1e8; color:white;">← Retour</a>
+            </div>
+            <div class="card-body">
+                <form asp-action="Create">
+                    <div class="mb-3">
+                        <label asp-for="UserName" class="form-label"></label>
+                        <input asp-for="UserName" class="form-control" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="FullName" class="form-label"></label>
+                        <input asp-for="FullName" class="form-control" />
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Créer</button>
+                    <a asp-action="Index" class="btn btn-secondary">Annuler</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,51 @@
+@<text> <style> body {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar {
+    width: 220px;
+    background-color: #0d6efd;
+    color: white;
+    position: fixed;
+    top: 56px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    padding-top: 1rem;
+}
+
+    .sidebar a {
+        color: white;
+        padding: 12px 20px;
+        display: block;
+        text-decoration: none;
+    }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+.main-content {
+    margin-left: 220px;
+    padding: 2rem;
+    margin-top: 56px;
+    background: linear-gradient(135deg, #f0f5ff 0%, #ffffff 100%);
+    width: 100%;
+    min-height: 100vh;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+}
+
+</style >
+</text >
